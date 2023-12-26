@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <Suspense>
 
         </Suspense> */}
-		            <main>{children}</main>
+		  <main>{children}</main>
       </body>
     </html>
   );

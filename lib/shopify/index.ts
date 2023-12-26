@@ -5,49 +5,49 @@ import { revalidateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import {
-  addToCartMutation,
-  createCartMutation,
-  editCartItemsMutation,
-  removeFromCartMutation
+	addToCartMutation,
+	createCartMutation,
+	editCartItemsMutation,
+	removeFromCartMutation
 } from './mutations/cart';
 import { getCartQuery } from './queries/cart';
 import {
-  getCollectionProductsQuery,
-  getCollectionQuery,
-  getCollectionsQuery
+	getCollectionProductsQuery,
+	getCollectionQuery,
+	getCollectionsQuery
 } from './queries/collection';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
-  getProductQuery,
-  getProductRecommendationsQuery,
-  getProductsQuery
+	getProductQuery,
+	getProductRecommendationsQuery,
+	getProductsQuery
 } from './queries/product';
 import {
-  Cart,
-  Collection,
-  Connection,
-  Image,
-  Menu,
-  Page,
-  Product,
-  ShopifyAddToCartOperation,
-  ShopifyCart,
-  ShopifyCartOperation,
-  ShopifyCollection,
-  ShopifyCollectionOperation,
-  ShopifyCollectionProductsOperation,
-  ShopifyCollectionsOperation,
-  ShopifyCreateCartOperation,
-  ShopifyMenuOperation,
-  ShopifyPageOperation,
-  ShopifyPagesOperation,
-  ShopifyProduct,
-  ShopifyProductOperation,
-  ShopifyProductRecommendationsOperation,
-  ShopifyProductsOperation,
-  ShopifyRemoveFromCartOperation,
-  ShopifyUpdateCartOperation
+	Cart,
+	Collection,
+	Connection,
+	Image,
+	Menu,
+	Page,
+	Product,
+	ShopifyAddToCartOperation,
+	ShopifyCart,
+	ShopifyCartOperation,
+	ShopifyCollection,
+	ShopifyCollectionOperation,
+	ShopifyCollectionProductsOperation,
+	ShopifyCollectionsOperation,
+	ShopifyCreateCartOperation,
+	ShopifyMenuOperation,
+	ShopifyPageOperation,
+	ShopifyPagesOperation,
+	ShopifyProduct,
+	ShopifyProductOperation,
+	ShopifyProductRecommendationsOperation,
+	ShopifyProductsOperation,
+	ShopifyRemoveFromCartOperation,
+	ShopifyUpdateCartOperation
 } from './types';
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
@@ -432,6 +432,8 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
     console.error('Invalid revalidation secret.');
     return NextResponse.json({ status: 200 });
   }
+  
+
 
   if (!isCollectionUpdate && !isProductUpdate) {
     // We don't need to revalidate anything for any other topics.
@@ -443,8 +445,11 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   if (isProductUpdate) {
+	console.log(TAGS.products)
     revalidateTag(TAGS.products);
   }
+
+
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });
 }
